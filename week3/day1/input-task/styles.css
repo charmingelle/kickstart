@@ -11,3 +11,11 @@ fieldset {
   display: flex;
   flex-direction: column;
 }
+
+label {
+  margin: 10px;
+}
+
+input[type="submit"] {
+  margin: 10px;
+}
