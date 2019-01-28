@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Input Task</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <h1>Personal Information</h1>
+    <form
+      action="https://form-practice.herokuapp.com/create-application"
+      method="post"
+    >
+      <fieldset action="">
+        <legend>Personal Information</legend>
+        <label for="surname">
+          Surname: <input type="text" name="surname" />
+        </label>
+        <label for="name"> Name: <input type="text" name="name" /> </label>
+        <label for="age">
+          How old are You?: <input type="number" name="age" />
+        </label>
+        <label for="date-of-birth">
+          Full date of birth: <input type="date" name="date-of-birth" />
+        </label>
+        <label for="accept">
+          I accept tge terms od the agreement
+          <input type="checkbox" name="accept" />
+        </label>
+      </fieldset>
+      <fieldset action="">
+        <legend>Registration</legend>
+        <label for="email">Email <input type="text" name="email" /> </label>
+        <label for="password"
+          >Password <input type="password" name="password"
+        /></label>
+      </fieldset>
+      <fieldset action="">
+        <label for="cats">
+          Do you love cats?
+          <label for="cats-yes"
+            >Yes <input type="radio" name="cats-yes" />
+          </label>
+          <label for="cats-no">No <input type="radio" name="cats-no" /> </label>
+        </label>
+        <label for="color">
+          What is your favourite color? <input type="color" name="color" />
+        </label>
+        <label for="time"
+          >What time do you go to bed? <input type="time" name="time" />
+        </label>
+        <label for="cars"
+          >What your favourite brand of cars?
+          <select name="cars">
+            <option value="BMW">BMW</option>
+            <option value="Audi">Audi</option>
+            <option value="Lada">Lada</option>
+          </select>
+        </label>
+        <label for="rate">
+          How do you rate our work? <input type="range" name="rate" />
+        </label>
+      </fieldset>
+      <fieldset action="">
+        <legend>Your comments:</legend>
+        <input type="text" placeholder="comments" />
+      </fieldset>
+      <input type="submit" name="submit" value="Submit" />
+    </form>
+  </body>
+</html>
