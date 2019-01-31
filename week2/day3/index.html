@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>I've got the <b>POWER</b>!</h1>
+    <div class="output">1</div>
+    <div class="output">2</div>
+    <div class="output">3</div>
+    <div class="output">4</div>
+    <div class="output">5</div>
+    <div class="output">6</div>
+    <div class="output">7</div>
+    <div class="output">8</div>
+    <div class="output">9</div>
+    <div class="output">10</div>
+    <label>Power <input type="text" id="power" value="1" /> </label>
+    <script>
+      const outputs = Array.from(document.getElementsByClassName("output"));
+      const input = document.querySelector("input");
+
+      const resetOutputs = () =>
+        outputs.forEach((el, i) => (el.innerHTML = i + 1));
+
+      input.addEventListener("input", () => {
+        if (!isNaN(input.value)) {
+          outputs.forEach((el, i) => (el.innerHTML = (i + 1) ** input.value));
+          window.setTimeout(resetOutputs, 3000);
+        }
+      });
+    </script>
+  </body>
+</html>

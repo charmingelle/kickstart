@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <nav id="main-menu"></nav>
+
+    <script>
+      const hideRest = container => {
+        Array.from(container.children)
+          .map(child => child.querySelector("ul"))
+          .forEach(el => el && hideElWithChildren(el));
+      };
+
+      const hideElWithChildren = el => {
+        el.classList.add("hidden");
+        Array.from(el.querySelectorAll("ul")).forEach(innerEl =>
+          innerEl.classList.add("hidden")
+        );
+      };
+
+      const toggleVisibility = (el, container) => {
+        if (el.classList.contains("hidden")) {
+          hideRest(container);
+          el.classList.remove("hidden");
+        } else {
+          hideElWithChildren(el);
+        }
+      };
+
+      const createNode = (nodeObject, container) => {
+        let node = document.createElement("li");
+
+        if (nodeObject.hasOwnProperty("href")) {
+          const link = document.createElement("a");
+
+          link.href = nodeObject.href;
+          link.innerHTML = nodeObject.title;
+          node.append(link);
+        } else {
+          const span = document.createElement("span");
+          const ul = document.createElement("ul");
+
+          span.innerHTML = nodeObject.title;
+          span.addEventListener("click", () => toggleVisibility(ul, container));
+          ul.append(...nodeObject.children.map(child => createNode(child, ul)));
+          ul.classList.add("hidden");
+          node.append(span, ul);
+        }
+        return node;
+      };
+
+      function buildNavigation(navigation, underThisNode) {
+        let ul = document.createElement("ul");
+
+        ul.append(...navigation.map(el => createNode(el, ul)));
+        underThisNode.append(ul);
+      }
+    </script>
+    <script>
+      // const navigation = [
+      //   {
+      //     title: "Home",
+      //     href: "#1"
+      //   },
+      //   {
+      //     title: "Courses",
+      //     children: [{ title: "FED", href: "#2" }, { title: "UX", href: "#3" }]
+      //   },
+      //   {
+      //     title: "About",
+      //     children: [
+      //       { title: "Contact Us", href: "#2" },
+      //       { title: "Location", href: "#3" }
+      //     ]
+      //   }
+      // ];
+
+      const navigation = [
+        {
+          title: "Home",
+          href: "#1"
+        },
+        {
+          title: "Courses",
+          children: [{ title: "FED", href: "#2" }, { title: "UX", href: "#3" }]
+        },
+        {
+          title: "About",
+          children: [
+            {
+              title: "Contact Us",
+              children: [
+                { title: "Contact us in US", href: "#4" },
+                { title: "Contact us in Australia", href: "#5" }
+              ]
+            },
+            { title: "Location", href: "#3" }
+          ]
+        }
+      ];
+
+      buildNavigation(navigation, document.getElementById("main-menu"));
+    </script>
+  </body>
+</html>
