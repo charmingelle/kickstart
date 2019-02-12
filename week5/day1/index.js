@@ -1,6 +1,9 @@
 const fs = require("fs");
 const _ = require("lodash");
 const axios = require("axios");
+const app = require("express")();
+const bodyParser = require("body-parser");
+const path = require("path");
 
 // fs.readFile("/etc/passwd", "utf8", (err, data) => {
 //   if (err) {
@@ -50,10 +53,6 @@ const axios = require("axios");
 // server.listen(port, hostname, () => {
 //   console.log(`Server running at http://${hostname}:${port}/`);
 // });
-
-const app = require("express")();
-const bodyParser = require("body-parser");
-const path = require("path");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
